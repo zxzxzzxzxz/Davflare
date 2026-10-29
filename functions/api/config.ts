@@ -47,11 +47,6 @@ function configBody(
 
 export const onRequestGet: PagesFunction<ConfigEnv> = async (context) => {
   const { request, env } = context;
-  console.log("AUTH_CONFIG_CHECK", {
-  hasUsername: Boolean(env.WEBDAV_USERNAME),
-  hasPassword: Boolean(env.WEBDAV_PASSWORD),
-  usernameMatches: env.WEBDAV_USERNAME === "798466497zxz",
-  });  
   if (!verifyBasicAuth(request, env.WEBDAV_USERNAME, env.WEBDAV_PASSWORD)) {
     return textResponse("Unauthorized", 401);
   }
@@ -62,11 +57,6 @@ export const onRequestGet: PagesFunction<ConfigEnv> = async (context) => {
 
 export const onRequestPatch: PagesFunction<ConfigEnv> = async (context) => {
   const { request, env } = context;
-  console.log("AUTH_CONFIG_CHECK", {
-  hasUsername: Boolean(env.WEBDAV_USERNAME),
-  hasPassword: Boolean(env.WEBDAV_PASSWORD),
-  usernameMatches: env.WEBDAV_USERNAME === "798466497zxz",
-  });
   const auth = authorizeConfigWrite(
     request,
     env.WEBDAV_USERNAME,
